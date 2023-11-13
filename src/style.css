@@ -1,0 +1,60 @@
+@import "/src/assets/fonts/fonts.css";
+
+:root {
+  --Text-2: #5C6884;
+  --Text: #9FAEB6;
+  --Main: #132E6B;
+  --White: #FFF;
+  --Primary: #5AA9D4;
+  --Tretiary: #F7F7F9;
+  --Black: #202634;
+}
+
+body {
+  font-family: TT Norms;
+  font-weight: normal;
+  font-style: normal;
+  background: #F8F8F8;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background: unset;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+.container-width {
+  max-width: 1184px;
+  min-width: 390px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.container-offset {
+  padding: 40px 32px;
+  background: var(--White);
+  border-radius: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .container-width {
+    max-width: 1184px;
+    min-width: 390px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
