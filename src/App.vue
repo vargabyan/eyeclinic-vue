@@ -6,9 +6,9 @@ import Possibilities from './components/Possibilities.vue'
 import SpecialAttention from './components/SpecialAttention.vue'
 import Accommodation from './components/Accommodation.vue'
 import GetMedicalHelp from './components/GetMedicalHelp.vue'
-import Reviews from './components/Reviews.vue'
+import Reviews from './components/reviews/Reviews.vue'
 import RequestAConsultation from './components/RequestAConsultation.vue'
-import FAQ from './components/FAQ.vue'
+import FAQ from './components/faq/FAQ.vue'
 import LocalEthicsCommittee from './components/LocalEthicsCommittee.vue'
 </script>
 
