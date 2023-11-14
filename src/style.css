@@ -8,6 +8,12 @@
   --Primary: #5AA9D4;
   --Tretiary: #F7F7F9;
   --Black: #202634;
+  --Background-1: #E5ECF0;
+  --Secondary: #FF8D76;
+  --Orange-1: #F9B532;
+  --Background-4: #DEE8EE;
+  --Hover: #1A8DCC;
+  --Text-Heading: #2583CE;
 }
 
 body {
@@ -26,6 +32,7 @@ a {
 }
 
 button {
+  font-family: TT Norms;
   border: none;
   background: unset;
   padding: 0;
