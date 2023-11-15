@@ -141,38 +141,29 @@
 
 @media (max-width: 1052px) {
 
-  .reception-foreign-citizens {
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .reception-foreign-citizens_description-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 537px;
-    width: 100%;
-    gap: 20px;
-  }
-
-  .reception-foreign-citizens_description-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .reception-foreign-citizens_subtitle {
-    font-size: 16px;
-  }
-
   .reception-foreign-citizens_header {
-    font-size: 36px;
+    font-size: clamp(36px, 1vw, 40px);
     letter-spacing: -0.72px;
   }
 
-  .reception-foreign-citizens_description {
-    color: var(--Text-2);
-    font-size: 16px;
+}
+
+@media (max-width: 992px) {
+
+  .reception-foreign-citizens {
+    flex-wrap: wrap;
+  }
+
+  .reception-foreign-citizens_img {
+    max-width: clamp(326%, 43vw, 550px);
+    width: inherit;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .reception-foreign-citizens {
+    width: initial;
   }
 
   .reception-foreign-citizens_services {
@@ -185,6 +176,10 @@
     background: var(--Primary);
     margin-top: 12px;
     align-self: center;
+  }
+
+  .reception-foreign-citizens_img {
+    width: 100%;
   }
 
 }

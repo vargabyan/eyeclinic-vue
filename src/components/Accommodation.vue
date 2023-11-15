@@ -1,4 +1,15 @@
 <script setup>
+import {ref} from 'vue'
+
+const handle = ref(false)
+const windowWidth = ref(window.innerWidth)
+const handleOpen = () => {
+  handle.value = !handle.value
+}
+
+window.addEventListener('resize', () => {
+  windowWidth.value = window.innerWidth
+})
 
 </script>
 
@@ -7,9 +18,9 @@
     <div class="accommodation_content container-offset">
       <div class="accommodation_header-wrapper">
         <h1 class="accommodation_header">Проживание</h1>
-        <a class="accommodation_see-prices" href="">Узнать цены</a>
+        <a class="accommodation_see-prices" v-show="windowWidth >= 768" href="">Узнать цены</a>
       </div>
-      <p class="accommodation_description">
+      <p class="accommodation_description" :class="handle ? 'text-open' : 'text-close'">
         Скорейшему выздоровлению пациентов способствуют прекрасные условия стационара.
         <br>
         <br>
@@ -29,6 +40,10 @@
         Внимание и забота персонала, уход и лечение, чистота и уют номеров, прекрасное питание – все&nbsp;способствует
         быстрой реабилитации пациентов
       </p>
+      <button class="accommodation_description_read-more" v-show="windowWidth <= 768" @click="handleOpen">Посмотреть
+        Все
+      </button>
+      <a class="accommodation_see-prices" v-show="windowWidth <= 768" href="">Узнать цены</a>
       <div class="accommodation_gallery">
         <img class="accommodation_core-img" src="/src/assets/images/image%2016.png" alt="">
         <div class="accommodation_gallery-item-wrapper">
@@ -88,6 +103,7 @@
   flex-direction: column;
   gap: 24px;
   max-width: 719px;
+  width: max-content;
 }
 
 .accommodation_header-wrapper {
@@ -130,8 +146,9 @@
 }
 
 .accommodation_core-img {
-  width: 719px;
-  height: 432px;
+  max-width: 719px;
+  width: 100%;
+  max-height: 432px;
   border-radius: 12px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -143,8 +160,10 @@
 }
 
 .accommodation_gallery_item {
-  width: 231px;
-  height: 145px;
+  max-width: 231px;
+  width: 100%;
+  min-width: 101px;
+  max-height: 145px;
   border-radius: 12px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -154,6 +173,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 381px;
 }
 
 .accommodation_other_content {
@@ -288,6 +308,97 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+}
+
+@media (max-width: 1200px) {
+
+  .accommodation {
+  //flex-wrap: wrap;
+  }
+
+  .accommodation_content {
+    max-width: clamp(619px, 60vw, 719px);
+    height: 100%;
+  }
+
+  .accommodation_other_content {
+  //width: max-content;
+  }
+}
+
+@media (max-width: 992px) {
+
+  .accommodation {
+    flex-wrap: wrap;
+  }
+
+  .accommodation_content {
+    max-width: inherit;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .accommodation_header-wrapper {
+    order: 1;
+  }
+
+  .accommodation_content {
+    width: inherit;
+    height: 100%;
+  }
+
+  .accommodation_header {
+    font-size: 28px;
+    letter-spacing: -0.56px;
+  }
+
+
+  .accommodation_description {
+    order: 3;
+    line-height: 24px;
+    overflow: hidden;
+  }
+
+  .accommodation_description_read-more {
+    order: 4;
+    color: var(--Primary);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    text-transform: uppercase;
+    width: max-content;
+    margin-top: -16px;
+  }
+
+  .accommodation_see-prices {
+    order: 5;
+  }
+
+  .text-open {
+    height: 100%;
+  }
+
+  .text-close {
+    height: 240px;
+  }
+
+  .accommodation_gallery {
+    gap: 12px;
+    order: 2;
+  }
+
+  .accommodation_gallery-item-wrapper {
+    gap: 12px;
+  }
+
+  .accommodation_other {
+    gap: 32px;
+  }
+
+  .accommodation_other_content {
+    width: inherit;
+  }
 }
 
 </style>
