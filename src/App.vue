@@ -17,14 +17,17 @@ import LocalEthicsCommittee from './components/LocalEthicsCommittee.vue'
     <ForeignCitizens />
     <AboutPrice />
     <MissionAndValues />
+
 <!--    <Possibilities />-->
+
     <SpecialAttention />
     <Accommodation />
     <GetMedicalHelp />
+
 <!--    <Reviews />-->
-<!--    <RequestAConsultation />-->
-<!--    <FAQ />-->
-<!--    <LocalEthicsCommittee />-->
+    <RequestAConsultation />
+    <FAQ />
+    <LocalEthicsCommittee />
   </div>
 </template>
 

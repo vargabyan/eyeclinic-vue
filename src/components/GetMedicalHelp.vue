@@ -1,4 +1,41 @@
 <script setup>
+import {ref} from 'vue'
+
+const responseData = [
+  {
+    number: '02',
+    typeOfService: 'Выбрать услугу, тип проживания и транспорт',
+    description: 'Nunc nunc tortor et in enim. Suspendisse eu sed commodo ac in lectus vestibulum. Habitasse tortor id volutpat eros hac.',
+  },
+  {
+    number: '03',
+    typeOfService: 'Получить расчет стоимости',
+    description: 'Nunc nunc tortor et in enim. Suspendisse eu sed commodo ac in lectus vestibulum. Habitasse tortor id volutpat eros hac.',
+  },
+  {
+    number: '04',
+    typeOfService: 'Подготовка приезда',
+    description: 'Nunc nunc tortor et in enim. Suspendisse eu sed commodo ac in lectus vestibulum. Habitasse tortor id volutpat eros hac.',
+  },
+  {
+    number: '05',
+    typeOfService: 'Размещение и лечение',
+    description: 'Nunc nunc tortor et in enim. Suspendisse eu sed commodo ac in lectus vestibulum. Habitasse tortor id volutpat eros hac.',
+  },
+]
+
+const windowWidth = ref(window.innerWidth)
+const handle = ref(windowWidth.value >= 768)
+
+window.addEventListener('resize', () => {
+  windowWidth.value = window.innerWidth
+
+  handle.value = windowWidth.value >= 768
+})
+
+const handleOpen = () => {
+  handle.value = !handle.value
+}
 
 </script>
 
@@ -11,51 +48,31 @@
           <div class="get-medical-help_item_text-wrapper">
             <div class="get-medical-help_item_number">01</div>
             <h2 class="get-medical-help_item_header">Обращение в отдел медицинского туризма</h2>
+            <img class="get-medical-help_item_img" src="/src/assets/images/image%20180%202.png" alt=""
+                 v-show="windowWidth <= 768">
             <button class="get-medical-help_item_button">Получить консультацию</button>
           </div>
-          <img class="get-medical-help_item_img" src="/src/assets/images/image%20180.png" alt="">
+          <img class="get-medical-help_item_img" src="/src/assets/images/image%20180.png" alt=""
+               v-show="windowWidth > 768">
         </div>
 
-        <div class="get-medical-help_content_item">
+        <div class="get-medical-help_content_item" v-show="handle" v-for="item in responseData">
           <div class="get-medical-help_item_text-wrapper">
-            <div class="get-medical-help_item_number">02</div>
-            <h2 class="get-medical-help_item_header">Обращение в отдел медицинского туризма</h2>
+            <div class="get-medical-help_item_number">{{ item.number }}</div>
+            <h2 class="get-medical-help_item_header">{{ item.typeOfService }}</h2>
             <p class="get-medical-help_item_text">
-              Nunc nunc tortor et in enim. Suspendisse eu sed commodo ac in lectus vestibulum. Habitasse tortor id
-              volutpat eros hac.
+              {{ item.description }}
             </p>
           </div>
         </div>
-        <div class="get-medical-help_content_item">
-          <div class="get-medical-help_item_text-wrapper">
-            <div class="get-medical-help_item_number">03</div>
-            <h2 class="get-medical-help_item_header">Получить расчет <br> стоимости</h2>
-            <p class="get-medical-help_item_text">
-              Nunc nunc tortor et in enim. Suspendisse eu sed commodo ac in lectus vestibulum. Habitasse tortor id
-              volutpat eros hac.
-            </p>
-          </div>
+
+        <div class="get-medical-help_button-open-wrapper" v-show="windowWidth <= 768">
+          <strong class="get-medical-help_button-open">
+            Раскрыть полный список
+            <span @click="handleOpen">ещё 4 шага</span>
+          </strong>
         </div>
-        <div class="get-medical-help_content_item">
-          <div class="get-medical-help_item_text-wrapper">
-            <div class="get-medical-help_item_number">04</div>
-            <h2 class="get-medical-help_item_header">Подготовка приезда</h2>
-            <p class="get-medical-help_item_text">
-              Nunc nunc tortor et in enim. Suspendisse eu sed commodo ac in lectus vestibulum. Habitasse tortor id
-              volutpat eros hac.
-            </p>
-          </div>
-        </div>
-        <div class="get-medical-help_content_item">
-          <div class="get-medical-help_item_text-wrapper">
-            <div class="get-medical-help_item_number">05</div>
-            <h2 class="get-medical-help_item_header">Размещение и лечение</h2>
-            <p class="get-medical-help_item_text">
-              Nunc nunc tortor et in enim. Suspendisse eu sed commodo ac in lectus vestibulum. Habitasse tortor id
-              volutpat eros hac.
-            </p>
-          </div>
-        </div>
+
       </div>
     </div>
     <div class="download-file container-offset">
@@ -100,15 +117,20 @@
   gap: 30px;
   border-radius: 10px;
   background: var(--Tretiary);
+  justify-content: space-between;
 }
 
 .get-medical-help_content_item:nth-child(1) {
   grid-area: A;
   background: #F2F6F8;
+  max-width: 492px;
+  width: 100%;
 }
 
 .get-medical-help_content_item:nth-child(2) {
   grid-area: B;
+  max-width: 492px;
+  width: 100%;
 }
 
 .get-medical-help_content_item:nth-child(3) {
@@ -151,6 +173,7 @@
   line-height: 20px;
   text-transform: uppercase;
   margin-top: 4px;
+  max-width: 260px;
 }
 
 .get-medical-help_item_button {
@@ -173,7 +196,7 @@
   width: 100%;
   max-height: 205px;
   border-radius: 10px;
-  background-repeat: no-repeat;
+  object-fit: cover;
 }
 
 .get-medical-help_item_text {
@@ -197,6 +220,7 @@
   text-transform: uppercase;
   display: flex;
   align-items: center;
+  gap: 6px;
 }
 
 .download-file_text:before {
@@ -225,6 +249,92 @@
   font-weight: 700;
   letter-spacing: -0.28px;
   text-transform: uppercase;
+}
+
+@media (max-width: 1200px) {
+
+  .get-medical-help_content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .get-medical-help_content {
+    width: min-content;
+  }
+
+  .get-medical-help_header {
+    font-size: 28px;
+  }
+
+  .get-medical-help_content_item:nth-child(1) .get-medical-help_item_text-wrapper {
+    max-width: 100%;
+  }
+
+  .get-medical-help_item_text-wrapper {
+    gap: 24px;
+  }
+
+  .get-medical-help_item_button {
+    margin-top: 0;
+  }
+
+  .get-medical-help_item_img {
+    max-width: 100%;
+    width: 100%;
+    object-position: 50% 20%;
+  }
+
+  .get-medical-help_button-open-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .get-medical-help_button-open {
+    color: var(--Black);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .get-medical-help_button-open span {
+    color: var(--Text);
+    display: flex;
+    gap: 12px;
+  }
+
+  .get-medical-help_button-open span:after {
+    display: block;
+    content: '';
+    width: 14px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='11' viewBox='0 0 14 11' fill='none'%3E%3Cpath d='M7.03906 10.9766C7.17448 10.9766 7.29948 10.9505 7.41406 10.8984C7.52865 10.8463 7.63802 10.7682 7.74219 10.6641L13.6953 4.57812C13.8672 4.40625 13.9531 4.19271 13.9531 3.9375C13.9531 3.77083 13.9115 3.61719 13.8281 3.47656C13.75 3.33594 13.6432 3.22396 13.5078 3.14062C13.3724 3.0625 13.2187 3.02344 13.0469 3.02344C12.8021 3.02344 12.5833 3.11719 12.3906 3.30469L7.03906 8.78906L1.68754 3.30469C1.49484 3.11719 1.27344 3.02344 1.02344 3.02344C0.856736 3.02344 0.705736 3.0625 0.570336 3.14062C0.429636 3.22396 0.320336 3.33594 0.242236 3.47656C0.158836 3.61719 0.117236 3.77083 0.117236 3.9375C0.117236 4.19271 0.205736 4.40625 0.382836 4.57812L6.33594 10.6641C6.44011 10.7682 6.54948 10.8463 6.66406 10.8984C6.77865 10.9505 6.90365 10.9766 7.03906 10.9766Z' fill='%23132E6B'/%3E%3C/svg%3E");
+  }
+
+  .download-file {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .download-file_text {
+    flex-direction: column;
+  }
+
+  .download-file_text:before {
+    margin-right: 0;
+    margin-bottom: 24px;
+  }
 }
 
 </style>

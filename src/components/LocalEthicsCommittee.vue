@@ -75,7 +75,7 @@
   justify-content: space-between;
 }
 
-.local-ethics-committee_item_name{
+.local-ethics-committee_item_name {
   color: var(--Main);
   font-size: 14px;
   font-weight: 500;
@@ -98,6 +98,32 @@
   line-height: 20px;
   text-decoration-line: underline;
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+
+  .local-ethics-committee {
+    gap: 20px;
+    padding: 40px 32px;
+  }
+
+  .local-ethics-committee_header {
+    color: var(--Black);
+    font-size: 26px;
+    letter-spacing: -0.52px;
+  }
+
+  .local-ethics-committee_item_svg {
+    max-width: 47px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .local-ethics-committee_header {
+    max-width: 325px;
+  }
 }
 
 
