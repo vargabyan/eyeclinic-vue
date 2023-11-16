@@ -54,7 +54,8 @@ const {item} = defineProps(['item'])
 .faq_content_item_subtitle-wrapper:after {
   display: block;
   content: '';
-  width: 18px;
+  max-width: 18px;
+  width: 100%;
   height: 18px;
 }
 
@@ -100,6 +101,23 @@ const {item} = defineProps(['item'])
 
 .text-close {
   display: none;
+}
+
+@media (max-width: 768px) {
+
+  .faq_content_item_subtitle-wrapper {
+    border-radius: 0;
+    padding: 20px 32px;
+  }
+
+  .faq_content_item_text {
+    box-shadow: 3px 3px 20px 0 rgba(90, 169, 213, 0.15);
+  }
+
+  .faq_content_item_subtitle-wrapper:after {
+    display: flex;
+    align-self: center;
+  }
 }
 
 </style>
