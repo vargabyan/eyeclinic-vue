@@ -312,17 +312,9 @@ window.addEventListener('resize', () => {
 
 @media (max-width: 1200px) {
 
-  .accommodation {
-  //flex-wrap: wrap;
-  }
-
   .accommodation_content {
     max-width: clamp(619px, 60vw, 719px);
     height: 100%;
-  }
-
-  .accommodation_other_content {
-  //width: max-content;
   }
 }
 
@@ -397,7 +389,8 @@ window.addEventListener('resize', () => {
   }
 
   .accommodation_other_content {
-    width: inherit;
+    max-width: 326px;
+    width: 100%;
   }
 }
 

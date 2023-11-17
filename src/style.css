@@ -1,4 +1,6 @@
 @import "/src/assets/fonts/fonts.css";
+@import "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css";
+
 
 :root {
     --Text-2: #5C6884;
@@ -56,7 +58,12 @@ button {
     border-radius: 20px;
 }
 
-@media (max-width: 480px) {
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 540px) {
     .container-width {
         max-width: 390px;
     }

@@ -119,7 +119,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 540px) {
 
   .local-ethics-committee_header {
     max-width: 325px;
