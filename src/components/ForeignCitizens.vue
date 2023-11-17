@@ -166,6 +166,10 @@
     width: initial;
   }
 
+  .reception-foreign-citizens_header {
+    color: var(--Main);
+  }
+
   .reception-foreign-citizens_services {
     display: flex;
     flex-direction: column;

@@ -281,6 +281,7 @@ const handleReadMore = () => {
   }
 
   .about-price_header {
+    color: var(--Main);
     font-size: 28px;
     letter-spacing: -0.56px;
   }
