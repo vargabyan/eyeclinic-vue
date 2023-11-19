@@ -1,4 +1,5 @@
 <script setup>
+import {reactive} from "vue";
 import ForeignCitizens from './components/ForeignCitizens.vue'
 import AboutPrice from './components/AboutPrice.vue'
 import MissionAndValues from './components/MissionAndValues.vue'
@@ -10,6 +11,11 @@ import Reviews from './components/reviews/Reviews.vue'
 import RequestAConsultation from './components/RequestAConsultation.vue'
 import FAQ from './components/faq/FAQ.vue'
 import LocalEthicsCommittee from './components/LocalEthicsCommittee.vue'
+import PopupContactThePatient from "./components/popup/PopupContactThePatient.vue";
+import PopupWeWillCallYouBack from "./components/popup/PopupWeWillCallYouBack.vue";
+
+const handelPopup = reactive({popupStatus: false})
+
 </script>
 
 <template>
@@ -25,6 +31,8 @@ import LocalEthicsCommittee from './components/LocalEthicsCommittee.vue'
     <RequestAConsultation/>
     <FAQ/>
     <LocalEthicsCommittee/>
+<!--    <PopupContactThePatient v-bind:handelPopup="handelPopup"/>-->
+<!--    <PopupWeWillCallYouBack v-bind:handelPopup="handelPopup"/>-->
   </div>
 </template>
 

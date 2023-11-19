@@ -1,11 +1,17 @@
 <script setup>
-import {ref} from "vue";
+import {ref, reactive} from "vue";
+import PopupContactThePatient from "./popup/PopupContactThePatient.vue";
 
+const handelPopup = reactive({popupStatus: false})
 const windowWidth = ref(window.innerWidth >= 768)
 
 window.addEventListener('resize', () => {
   windowWidth.value = window.innerWidth >= 768
 })
+
+const handelButton = () => {
+  handelPopup.popupStatus = !handelPopup.popupStatus
+}
 
 </script>
 
@@ -24,13 +30,14 @@ window.addEventListener('resize', () => {
         пациентов
         свяжется с вами в&nbsp;ближайшее время:</strong>
       <div class="request-a-consultation_button-wrapper">
-        <button class="request-a-consultation_button">Новый пациент</button>
+        <button class="request-a-consultation_button" @click="handelButton">Новый пациент</button>
         <button class="request-a-consultation_button">Повторное посещение</button>
         <button class="request-a-consultation_button">Записать пациента</button>
       </div>
     </div>
     <img class="request-a-consultation_img" :src="windowWidth ? '/src/assets/images/Group%20Request%20a%20consultation.png' : '/src/assets/images/Group%20Request%20a%20consultation%202.png'" alt="">
   </div>
+  <PopupContactThePatient v-bind:handelPopup="handelPopup"/>
 </template>
 
 <style scoped>

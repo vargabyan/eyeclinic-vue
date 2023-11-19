@@ -1,4 +1,12 @@
 <script setup>
+import {reactive} from 'vue'
+import PopupWeWillCallYouBack from './popup/PopupWeWillCallYouBack.vue'
+
+const handelPopup = reactive({popupStatus: false})
+
+const handelButton = () => {
+  handelPopup.popupStatus = !handelPopup.popupStatus
+}
 
 </script>
 
@@ -17,10 +25,11 @@
           <p class="reception-foreign-citizens_services_4">Проживание и питание включены</p>
         </div>
       </div>
-      <button class="reception-foreign-citizens_get-consultation">Получить консультацию</button>
+      <button class="reception-foreign-citizens_get-consultation" @click="handelButton">Получить консультацию</button>
     </div>
     <img class="reception-foreign-citizens_img" src="/src/assets/images/image%2032.png" alt="">
   </section>
+  <PopupWeWillCallYouBack v-bind:handelPopup="handelPopup"/>
 </template>
 
 <style scoped>

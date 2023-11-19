@@ -16,6 +16,9 @@
     --Background-4: #DEE8EE;
     --Hover: #1A8DCC;
     --Text-Heading: #2583CE;
+    --Green: #CBECD9;
+    --Error-Light: #F9E3E3;
+    --Error: #DB524E;
 }
 
 body {
