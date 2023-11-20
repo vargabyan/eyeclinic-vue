@@ -1,5 +1,6 @@
 <script setup>
-import {ref} from 'vue'
+import {reactive, ref} from 'vue'
+import PopupContactThePatient from "./popup/PopupContactThePatient.vue";
 
 const responseData = [
   {
@@ -24,6 +25,7 @@ const responseData = [
   },
 ]
 
+const handelPopup = reactive({popupStatus: false})
 const windowWidth = ref(window.innerWidth)
 const handle = ref(windowWidth.value >= 768)
 
@@ -35,6 +37,10 @@ window.addEventListener('resize', () => {
 
 const handleOpen = () => {
   handle.value = !handle.value
+}
+
+const handelButton = () => {
+  handelPopup.popupStatus = !handelPopup.popupStatus
 }
 
 </script>
@@ -50,7 +56,7 @@ const handleOpen = () => {
             <h2 class="get-medical-help_item_header">Обращение в отдел медицинского туризма</h2>
             <img class="get-medical-help_item_img" src="/src/assets/images/image%20180%202.png" alt=""
                  v-show="windowWidth <= 768">
-            <button class="get-medical-help_item_button">Получить консультацию</button>
+            <button class="get-medical-help_item_button" @click="handelButton">Получить консультацию</button>
           </div>
           <img class="get-medical-help_item_img" src="/src/assets/images/image%20180.png" alt=""
                v-show="windowWidth > 768">
@@ -80,6 +86,7 @@ const handleOpen = () => {
       <a class="download-file_button" href="">Скачать памятку</a>
     </div>
   </div>
+  <PopupContactThePatient v-bind:handelPopup="handelPopup"/>
 </template>
 
 <style scoped>

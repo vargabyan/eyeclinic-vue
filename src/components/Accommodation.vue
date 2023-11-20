@@ -1,7 +1,9 @@
 <script setup>
-import {ref} from 'vue'
+import {reactive, ref} from 'vue'
+import PopupWithEmail from "./popup/PopupWithEmail.vue";
 
 const handle = ref(false)
+const handelPopup = reactive({popupStatus: false})
 const windowWidth = ref(window.innerWidth)
 const handleOpen = () => {
   handle.value = !handle.value
@@ -11,6 +13,10 @@ window.addEventListener('resize', () => {
   windowWidth.value = window.innerWidth
 })
 
+const handelButton = () => {
+  handelPopup.popupStatus = !handelPopup.popupStatus
+}
+
 </script>
 
 <template>
@@ -18,7 +24,7 @@ window.addEventListener('resize', () => {
     <div class="accommodation_content container-offset">
       <div class="accommodation_header-wrapper">
         <h1 class="accommodation_header">Проживание</h1>
-        <a class="accommodation_see-prices" v-show="windowWidth >= 768" href="">Узнать цены</a>
+        <button class="accommodation_see-prices" v-show="windowWidth >= 768" @click="handelButton">Узнать цены</button>
       </div>
       <p class="accommodation_description" :class="handle ? 'text-open' : 'text-close'">
         Скорейшему выздоровлению пациентов способствуют прекрасные условия стационара.
@@ -43,7 +49,7 @@ window.addEventListener('resize', () => {
       <button class="accommodation_description_read-more" v-show="windowWidth <= 768" @click="handleOpen">Посмотреть
         Все
       </button>
-      <a class="accommodation_see-prices" v-show="windowWidth <= 768" href="">Узнать цены</a>
+      <button class="accommodation_see-prices" v-show="windowWidth <= 768" @click="handelButton">Узнать цены</button>
       <div class="accommodation_gallery">
         <img class="accommodation_core-img" src="/src/assets/images/image%2016.png" alt="">
         <div class="accommodation_gallery-item-wrapper">
@@ -88,6 +94,7 @@ window.addEventListener('resize', () => {
       </div>
     </div>
   </div>
+  <PopupWithEmail v-bind:handelPopup="handelPopup"/>
 </template>
 
 <style scoped>
